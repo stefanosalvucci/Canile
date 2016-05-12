@@ -21,19 +21,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     web.vm.box = "leopard/rwtrusty64"
     web.vm.provision "shell",
-      inline: "sudo apt-get install -y nodejs; cd /vagrant; bundle; RAILS_ENV=production rails s"
+      inline: "sudo apt-get install -y nodejs;
+                export RAILS_ENV=production;
+                ps axf | grep 'rails s' | grep -v grep | awk '{print \"kill -9 \" $1}';
+                cd /vagrant;
+                bundle;
+                rake db:setup;
+                export SECRET_KEY_BASE=f1767d05124aefbd239579120ff3f7ebfe76c310bb46aad4395dec5afb6d77acd9ca153e3551388413c39d6dfeb5513f5e0523c57a89642f20bf6906084f3e32;
+                nohup rails s -b 0.0.0.0"
 
-    # web.vm.provision "shell" do |s|
-    #   s.inline = "sudo apt-get install -y nodejs"
-    #   s.inline = "cd /vagrant"
-    #   s.inline = "bundle"
-    #   s.inline = "export RAILS_ENV=production"
-    #   s.inline = "rails s -b 0.0.0.0"
-    # end
   end
 
   config.vm.define "postgres" do |postgres|
-    postgres.vm.network "forwarded_port", guest: 5432, host: 5433
     postgres.vm.box = "ubuntu/trusty64"
 
     postgres.vm.network "forwarded_port", guest: 22, host: 2221, id: 'ssh', auto_correct: true

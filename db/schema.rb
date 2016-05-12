@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160505124951) do
 
-  create_table "canes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "breed"
-    t.string   "provenance"
-    t.string   "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "dogs", force: :cascade do |t|
     t.string   "name"
     t.string   "breed"
