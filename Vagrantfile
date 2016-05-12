@@ -21,8 +21,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # node.ssh.forward_agent = true
 
   end
+  
+  config.vm.define "postgres" do |postgres|
 
-
+  postgres.vm.box = "ubuntu/trusty64"
+  
+	postgres.vm.provision "puppet" do |puppet|
+    		puppet.options = "--verbose --debug"
+		puppet.manifests_path = "puppet/manifests"
+		puppet.manifest_file = "init.pp"
+		puppet.module_path = "/home/mattia/.puppet/code/modules"  #path per moduli puppetlabs
+	end
+  end
   config.vm.provision "shell",
     inline: "sudo apt-get install -y nodejs; cd /vagrant; bundle; rails s"
 
