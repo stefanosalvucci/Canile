@@ -20,5 +20,5 @@ production:
   database: canile_production
   username: vagrant
   password: aswroma3
-  host: 10.11.1.201
+  host: 10.11.1.101
   port: 5432
