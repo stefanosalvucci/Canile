@@ -20,5 +20,5 @@ production:
   database: canile_production
   username: vagrant
   password:
-  host: localhost
+  host: 10.11.1.101
   port: 5433
