@@ -19,6 +19,6 @@ production:
   encoding: unicode
   database: canile_production
   username: vagrant
-  password:
+  password: aswroma3
   host: 10.11.1.101
   port: 5433
