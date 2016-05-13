@@ -17,7 +17,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     postgres.ssh.forward_agent = true
 
     postgres.vm.provision "puppet" do |puppet|
-      puppet.options = "--verbose --debug"
       puppet.manifests_path = "puppet/manifests"
       puppet.manifest_file = "init.pp"
       puppet.module_path = ENV['PUPPET_PATH']  #path per moduli puppetlabs
