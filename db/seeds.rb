@@ -26,7 +26,7 @@ DogCamp.create(
   address: "Piazza Guglielmo Marconi, 26/B, Roma",
   capacity: 90)
 
-30.times do
+20.times do
   Dog.create(
     name: names.sample,
     breed: breeds.sample,

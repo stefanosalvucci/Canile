@@ -24,6 +24,11 @@
     <%= f.text_field :provenance %>
   </div>
   <div class="field">
+    <%= f.label :dog_camp %><br>
+    <%= collection_select(:dog, :dog_camp_id, DogCamp.all, :id, :name, :prompt => 'Seleziona Canile')
+%>
+  </div>
+  <div class="field">
     <%= f.label :gender %><br>
     <%= f.text_field :gender %>
   </div>
