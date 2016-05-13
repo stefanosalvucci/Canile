@@ -26,7 +26,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   config.vm.define "web" do |web|
-    web.vm.network "forwarded_port", guest: 3000, host: 3000
     web.vm.network "forwarded_port", guest: 22, host: 2222, id: 'ssh', auto_correct: true
     web.vm.network "private_network", ip: "10.11.1.201", virtualbox__intnet: true
     web.ssh.forward_agent = true
@@ -36,12 +35,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web.vm.provision "shell",
       inline: "sudo apt-get install -y nodejs;
                 export RAILS_ENV=production;
-                ps axf | grep 'rails s' | grep -v grep | awk '{print \"kill -9 \" $1}';
+                if [ -f /vagrant/tmp/pids/server.pid ]
+                  then
+                    sudo kill -INT $(cat /vagrant/tmp/pids/server.pid);
+                fi
                 cd /vagrant;
                 bundle;
                 rake db:migrate;
+                rake db:seed;
                 export SECRET_KEY_BASE=f1767d05124aefbd239579120ff3f7ebfe76c310bb46aad4395dec5afb6d77acd9ca153e3551388413c39d6dfeb5513f5e0523c57a89642f20bf6906084f3e32;
-                nohup rails s -b 0.0.0.0"
+                rails s -b 0.0.0.0 -d"
 
   end
 
