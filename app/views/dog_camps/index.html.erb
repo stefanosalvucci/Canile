@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista Canili</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Indirizzo</th>
+      <th>Capienza</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dog_camps.each do |dog_camp| %>
+      <tr>
+        <td><%= dog_camp.name %></td>
+        <td><%= dog_camp.address %></td>
+        <td><%= dog_camp.capacity %></td>
+        <td><%= link_to 'Mostra', dog_camp %></td>
+        <td><%= link_to 'Modifica', edit_dog_camp_path(dog_camp) %></td>
+        <td><%= link_to 'Elimina', dog_camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Aggiungi Canile', new_dog_camp_path %>
+<%= link_to 'Lista Cani', dogs_path %>

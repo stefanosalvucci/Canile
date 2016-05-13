@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dog_camps
   resources :dogs
   root 'dogs#index'
 

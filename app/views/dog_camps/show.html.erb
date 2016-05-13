@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dog_camp.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @dog_camp.address %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @dog_camp.capacity %>
+</p>
+
+<%= link_to 'Edit', edit_dog_camp_path(@dog_camp) %> |
+<%= link_to 'Back', dog_camps_path %>
