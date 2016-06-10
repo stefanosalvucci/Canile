@@ -18,7 +18,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: canile_production
-  username: vagrant
-  password: aswroma3
-  host: 10.11.1.101
+  username: postgres
+  password:
+  host: 192.168.99.100
   port: 5432
